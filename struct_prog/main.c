@@ -26,19 +26,49 @@ void wordToFile (char (*str))
     {
        printf("Error!");
     }
-    printf("\nfile writen!\n");
 
     fprintf(fptr,"%s",str);
     fclose(fptr);
 }
 
+void fileToWord(int x)
+{
+    FILE * hi;
+    char string[100];
+    char word[20];
+    
+    hi = fopen("test.txt","r");
+    while(!feof(hi))
+    {
+        int res = fscanf(hi,"%s",&*string);
+        if (res == EOF)
+        {
+            break;
+        }
+        
+    printf("\nword in binary after read file - %s\n\n",string);
+    }
+    fclose(hi);
+    
+    for (int i = 0; i < sizeof(string); i ++) {
+        char codeOfWord_local[100];
+        
+        snprintf(codeOfWord_local, sizeof(codeOfWord_local), "%s%c", codeOfWord_local, string[i]);
+        printf("%c, %s\n",string[i], codeOfWord_local);
+    }
+    
+}
+
 int main()
 {
-    char *string = "DOLBAEB";//Начальное слово
+    char *string = "BARABAN";//Начальное слово
+    printf("word - %s\n\n", string);
+    
     char codeOfWord[sizeof(string) * 8];//Выходное слово
     
     int avbReturn = 0;//восьмибитное представление каждой буквы
     int len = 0;//длина (чисто по приколу(for joke))
+    int n = 0;
 
     for (int i = 0; i < sizeof(string)-1; i++) {
 
@@ -55,8 +85,9 @@ int main()
             printf("%c - %s\n", string[i], codeOfWord_local);//Выврд
         }
     }
-    printf("\n<<==================OUTPUT=WORD==================>>\n\n%s\n", codeOfWord);
+    printf("\nword in binary to write - %s\n", codeOfWord);
     wordToFile(codeOfWord);
+    fileToWord(n);
 
     return 0;
 }
