@@ -16,9 +16,25 @@ int asciiValueToBinary(int asciiInput)//получаем из БУКВЫ 8-ми 
     return(res);
 }
 
+void wordToFile (char (*str))
+{
+    FILE *fptr;
+
+    fptr = fopen("test.txt","w");
+    
+    if(fptr == NULL)
+    {
+       printf("Error!");
+    }
+    printf("\nfile writen!\n");
+
+    fprintf(fptr,"%s",str);
+    fclose(fptr);
+}
+
 int main()
 {
-    char *string = "BARABAN";//Начальное слово
+    char *string = "DOLBAEB";//Начальное слово
     char codeOfWord[sizeof(string) * 8];//Выходное слово
     
     int avbReturn = 0;//восьмибитное представление каждой буквы
@@ -40,6 +56,7 @@ int main()
         }
     }
     printf("\n<<==================OUTPUT=WORD==================>>\n\n%s\n", codeOfWord);
-//sajjfaskdjfkajskdfjakldjfkajksdjksad
+    wordToFile(codeOfWord);
+
     return 0;
 }
