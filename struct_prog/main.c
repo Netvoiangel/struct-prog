@@ -40,6 +40,6 @@ int main()
         }
     }
     printf("\n<<==================OUTPUT=WORD==================>>\n\n%s\n", codeOfWord);
-
+//sajjfaskdjfkajskdfjakldjfkajksdjksad
     return 0;
 }
