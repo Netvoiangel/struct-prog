@@ -33,9 +33,9 @@ void wordToFile (char (*str))
 
 void fileToWord(int x)
 {
+
     FILE * hi;
     char string[100];
-    char word[20];
     
     hi = fopen("test.txt","r");
     while(!feof(hi))
@@ -49,18 +49,33 @@ void fileToWord(int x)
     printf("\nword in binary after read file - %s\n\n",string);
     }
     fclose(hi);
-    
+    int count = 0;
+    char codeOfWord[100];
     for (int i = 0; i < sizeof(string); i ++) {
-        char codeOfWord_local[100];
         
-        snprintf(codeOfWord_local, sizeof(codeOfWord_local), "%s%c", codeOfWord_local, string[i]);
-        printf("%c, %s\n",string[i], codeOfWord_local);
+        if ((string[i] == '1') || (string[i] == '0')) {
+            snprintf(codeOfWord, sizeof(codeOfWord), "%s%c", codeOfWord, string[i]);
+            count += 1;
+        }
+//        printf("%c, %s\n",string[i], codeOfWord);
+    }
+//    printf("\noutput fro func - %s\n", codeOfWord);
+//    printf("%d\n", count);
+    for (int i = 7; i < count + 1; i +=7) {
+        for (int j = i - 7; j < i; j ++) {
+            printf("%c", codeOfWord[j]);
+        }
+        printf("\n");
     }
     
 }
 
 int main()
 {
+    char str[10]="baraban";
+    int vs[256]={0};
+    
+    
     char *string = "BARABAN";//Начальное слово
     printf("word - %s\n\n", string);
     
@@ -74,7 +89,7 @@ int main()
 
         if (string[i]) {
             
-            char codeOfWord_local[10];//Объявление оперативной переменной для записи из int в char
+            char codeOfWord_local[8];//Объявление оперативной переменной для записи из int в char
 
             avbReturn = asciiValueToBinary(toascii(string[i]));//собственно это и есть восьмибитное представление буквы
 
